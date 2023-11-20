@@ -12,4 +12,6 @@ html
             p 
                 ul
                     each val in toDoLists
-                        li=val
+                        li
+                            = val
+                            button(type='button' onclick='location.href="/delete_list/'+val+'"') 삭제하기

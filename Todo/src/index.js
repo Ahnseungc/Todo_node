@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = 8030;
 
-const toDoLists = ["밥먹기 "];
+let toDoLists = ["밥먹기 "];
 
 app.set("view engine", "pug");
 
@@ -20,6 +20,13 @@ app.post("/add_list", (req, res) => {
   const newContent = req.body.content;
   console.log("newConent" + "추가");
   toDoLists.push(newContent);
+  res.redirect("/");
+});
+
+app.get("/delete_list/:id", (req, res) => {
+  const deleteContent = req.params.id;
+  console.log(deleteContent + "삭제");
+  toDoLists = toDoLists.filter((value) => value != deleteContent);
   res.redirect("/");
 });
 
